@@ -18,10 +18,8 @@ public class AppForSave {
 
 
 	    	Session session1=factory.openSession();
-	    	
-//	    	fetch the records.
-//	    	get        load
-//	    	get->
+	    	Transaction tx = session1.beginTransaction();
+
 			/*
 			 * Student stud1 = session1.get(Student.class, 1); 
 			 * System.out.println("Hello");
@@ -31,10 +29,26 @@ public class AppForSave {
 			 * Student stud2 = session1.get(Student.class, 1);
 			 * System.out.println(stud2==stud1);
 			 */
-	    	Student stud1 = session1.get(Student.class, 16);
-	    	System.out.println(stud1);
+	    	Student s1 = new Student();
+	    	s1.setPer(81.0);
+	    	s1.setSname("Raj");
+
+	    	Student s2 = new Student();
+	    	s2.setPer(76.5);
+	    	s2.setSname("Priya");
+
+	    	Student s3 = new Student();
+	    	s3.setPer(92.0);
+	    	s3.setSname("Amit");
 	    	
+	    	session1.save(s1);
+	    	session1.save(s2);
+	    	session1.save(s3);
 	    	
+//	    	Student stud1 = session1.get(Student.class, 16);
+//	    	System.out.println(stud1);
+	    	
+	    	tx.commit();
 	    	session1.close();
 	    	factory.close();
 	    	System.out.println("All resources closed.");
